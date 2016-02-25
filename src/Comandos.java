@@ -1,7 +1,6 @@
 import java.io.*;
 import java.nio.file.*;
 import java.util.Scanner;
-import static java.nio.file.StandardCopyOption.*;
 
 public class Comandos{
 
@@ -16,11 +15,11 @@ public class Comandos{
         File f = new File(path +"\\"+ filename);
         try{
             if(f.exists()){ //Si el archivo existe, mostrar que ya existe.
-                System.out.println("El Archivo ya existe.");
+                System.out.println("El Archivo ya existe.\n");
             }
             else{ //Si el archivo NO existe, crearlo y mostrar un mensaje de confirmacion.
                 f.createNewFile();
-                System.out.println("Archivo "+ f + " creado con EXITO.");
+                System.out.println("Archivo "+ f + " creado con EXITO.\n");
             }
         } catch(Exception e){
             //Atajar el error cuando el usuario intenta crear el archivo en un sitio o manera indebida.
@@ -47,17 +46,17 @@ public class Comandos{
                         texto = scan.nextLine();
                     }
                     editor.close();
-                    System.out.println("Archivo editado con EXITO.");
+                    System.out.println("Archivo editado con EXITO.\n");
                 }
                 else{
-                    System.out.println("El archivo " + file + " no existe.");
+                    System.out.println("El archivo " + file + " no existe.\n");
                 }
             } catch (Exception e){
-                System.out.println("El archivo no pudo ser creado. Se produjo una " + e.getClass().getSimpleName());
+                System.out.println("El archivo no pudo ser creado. Se produjo una " + e.getClass().getSimpleName()+"\n");
             }
 
         } else{ //Si el archivo no es un .txt
-            System.out.println("El archivo a editar no es un .txt");
+            System.out.println("El archivo a editar no es un .txt\n");
         }
     }
 
@@ -100,10 +99,10 @@ public class Comandos{
         Path dest = Paths.get(destino + "\\Copia malvada de " + file);
         if(archivo.exists()){
             Files.copy(orig, dest);
-            System.out.println("Archivo " + orig + " copiado con EXITO.");
+            System.out.println("Archivo " + orig + " copiado con EXITO.\n");
         }
         else{
-            System.out.println("El archivo " + orig + " NO Existe.");
+            System.out.println("El archivo " + orig + " NO EXISTE.\n");
         }
     }
 
