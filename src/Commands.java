@@ -20,7 +20,7 @@ final class Commands {
      * Create a simple and empty .txt file.
      *
      * @param filename The name of the file. ex: "drnaz"
-     * @param path     La ruta a donde se creara del archivo. Ej: C:\Users\Jorge\Documents\Java
+     * @param path     Path where file is being created. ie: C:\Users\Jorge\Documents\
      */
     static void create(String filename, String path) {
         File f = getFileExt(filename).equals("txt") ?
@@ -101,7 +101,9 @@ final class Commands {
      */
     static void copy(String file, String orig, String dest) {
         File f = new File(orig + sep + file);
-        if (f.exists()) {
+        File o = new File(orig);
+        File d = new File(dest);
+        if (f.exists() && o.isDirectory() && d.isDirectory()) {
             System.out.println(Messages.COPY_PREFIX);
             String prefix = new Scanner(System.in).nextLine();
             prefix = !prefix.equals("") ? prefix : "Evil Copy of ";
@@ -130,8 +132,10 @@ final class Commands {
             } catch (Exception e) {
                 System.out.println("ERROR. " + e.getClass().getSimpleName());
             }
-        } else {
+        } else if(!f.exists()){
             System.out.println(Messages.ERROR_NOTFOUND);
+        } else if(!o.isDirectory() || !d.isDirectory()){
+            System.out.println(Messages.ERROR_NOTADIRECTORY);
         }
     }
 
@@ -146,7 +150,7 @@ final class Commands {
     static void move(String file, String src, String dest) {
         File f = new File(src + sep + file);
         File d = new File(dest + sep + file);
-        if (f.exists() && Paths.get(src).toFile().isDirectory() && Paths.get(dest).toFile().isDirectory()) {
+        if (f.exists() && new File(src).isDirectory() && new File(dest).isDirectory()) {
             /* Must check first if both orig and dest are directories,
              *  in case some idiot decides to move C:/letter.txt to C:/virus.exe */
             try {
