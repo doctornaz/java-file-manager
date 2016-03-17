@@ -181,8 +181,11 @@ final class Commands {
     }
 
     static String getFileExt(String filename) {
-        int i = filename.lastIndexOf('.');
+        int i = filename.lastIndexOf('.'); //Gets the position of the very last period ( . ) in String filename.
         return (i >= 0) ? filename.substring(i + 1) : filename;
+        /* If there's a period in the filename, it returns > 0, return whatever is after the last period.
+         * It should be the file's extension. ('txt' for "myFile.txt"). OTHERWISE (There's no .), just return filename.*/
+        
     }
 
 }
