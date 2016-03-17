@@ -45,7 +45,7 @@ final class Commands {
         if (getFileExt(file).equals("txt")) {
             /* Try-with-resources statement. Checks if file exists. */
             try (PrintWriter out = new PrintWriter(file)) {
-                System.out.println(Messages.FILE_EDITING);
+                System.out.println(Messages.EDIT_EDITING);
                 StringBuilder sb = new StringBuilder();
                 Scanner scan = new Scanner(System.in);
                 String txt = scan.nextLine();
